@@ -236,10 +236,56 @@
             /* Hidden by default */
             transition: transform 0.3s ease;
             height: 70px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Navigation container */
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-soft);
+            justify-content: space-between;
+        }
+
+        /* Navigation logo */
+        .nav-logo span {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Hamburger menu (hidden by default) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hamburger animation */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Make navigation visible */
@@ -252,6 +298,8 @@
             display: flex;
             list-style: none;
             gap: 2.5rem;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
@@ -270,19 +318,66 @@
             transform: translateY(-2px);
         }
 
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 50px;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                width: 80%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 15px 20px;
+                font-size: 1.1rem;
+                border-radius: 10px;
+                background: rgba(44, 62, 80, 0.05);
+                margin: 5px 0;
+            }
+
+            .nav-links a:hover {
+                background: rgba(44, 62, 80, 0.1);
+                transform: scale(1.05);
+            }
+        }
+
         /* General section styling */
         .section {
             padding: 80px 0 70px 0;
             opacity: 0;
-            transform: translateY(100px) scale(0.9) rotateX(15deg);
-            /* More pronounced initial state */
-            filter: blur(10px) brightness(0.7);
-            /* More blur and darker */
+            transform: translateY(50px) scale(0.95);
+            /* Reduced initial state */
+            filter: blur(3px) brightness(0.9);
+            /* Less blur and lighter */
             transition:
-                opacity 1.5s cubic-bezier(.23, 1.01, .32, 1),
-                /* Slower transition */
-                transform 1.5s cubic-bezier(.23, 1.01, .32, 1),
-                filter 1.5s cubic-bezier(.23, 1.01, .32, 1);
+                opacity 0.6s cubic-bezier(.23, 1.01, .32, 1),
+                /* Faster transition */
+                transform 0.6s cubic-bezier(.23, 1.01, .32, 1),
+                filter 0.6s cubic-bezier(.23, 1.01, .32, 1);
             will-change: opacity, transform, filter;
             /* Optimize for animation */
             background: var(--card-bg);
@@ -327,38 +422,38 @@
         /* Staggered animation for children within visible sections */
         .section.visible .container>* {
             opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            /* More pronounced translateY */
-            animation: sectionChildIn 1.2s cubic-bezier(.23, 1.01, .32, 1) forwards;
-            /* Slower and more dynamic */
+            transform: translateY(20px) scale(0.98);
+            /* Less pronounced translateY */
+            animation: sectionChildIn 0.5s cubic-bezier(.23, 1.01, .32, 1) forwards;
+            /* Faster and smoother */
         }
 
         .section.visible .container>*:nth-child(1) {
-            animation-delay: 0.1s;
+            animation-delay: 0.05s;
         }
 
         .section.visible .container>*:nth-child(2) {
-            animation-delay: 0.25s;
+            animation-delay: 0.1s;
         }
 
         .section.visible .container>*:nth-child(3) {
-            animation-delay: 0.4s;
+            animation-delay: 0.15s;
         }
 
         .section.visible .container>*:nth-child(4) {
-            animation-delay: 0.55s;
+            animation-delay: 0.2s;
         }
 
         .section.visible .container>*:nth-child(5) {
-            animation-delay: 0.7s;
+            animation-delay: 0.25s;
         }
 
         .section.visible .container>*:nth-child(6) {
-            animation-delay: 0.85s;
+            animation-delay: 0.3s;
         }
 
         .section.visible .container>*:nth-child(7) {
-            animation-delay: 1.0s;
+            animation-delay: 0.35s;
         }
 
         /* Animation for children within sections */
@@ -1275,7 +1370,7 @@
     <!-- Welcome Modal - Appears on page load -->
     <div id="welcomeModal" class="welcome-modal">
         <h1>Muhsin & Fathima</h1>
-        <p>May your presence bring barakah and joy<br>We invite you to celebrate our wedding<br>on <strong>September 7,
+        <p>May your presence bring barakah and joy<br>We invite you to celebrate our wedding<br>on <strong>December 27,
                 2025</strong><br>in the beautiful coastal town of <strong>Kayalpattinam, Tamil Nadu</strong></p>
         <button class="welcome-btn" onclick="closeWelcome()">Let's Celebrate! 🎉</button>
     </div>
@@ -1297,7 +1392,15 @@
     <!-- Navigation Bar -->
     <nav id="navbar">
         <div class="nav-container">
-            <ul class="nav-links">
+            <div class="nav-logo">
+                <span>M & F</span>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#schedule">Schedule</a></li>
                 <li><a href="#travel">Travel</a></li>
@@ -1322,7 +1425,7 @@
         <div class="hero-content glass-card animate-hero">
             <div class="islamic-pattern">☪</div>
             <h1 class="couple-names">Muhsin & Fathima</h1>
-            <p class="wedding-date">Sunday, September 7, 2025</p>
+            <p class="wedding-date">Friday, December 27, 2025</p>
             <p class="location">📍 Majlis-ul Bukhari Shareef, Kayalpattinam</p>
             <div class="divider"></div>
             <p class="hero-intro">
@@ -1369,25 +1472,25 @@
                 <div class="schedule-item">
                     <img src="https://placehold.co/80x80/2C3E50/FFFFFF?text=Reception" class="card-img-circle"
                         alt="Reception" onerror="this.src='https://placehold.co/80x80/2C3E50/FFFFFF?text=Error';" />
-                    <div class="schedule-date">Saturday, September 6, 2025</div>
+                    <div class="schedule-date">Thursday, December 26, 2025</div>
                     <div class="schedule-event">Reception & Gatherings</div>
                     <div class="schedule-time">4:30 PM</div>
                     <p style="margin-top: 1rem; opacity: 0.9;">📍 Haji Appa Thaika Street, Kayalpattinam, Tamil Nadu,
                         India</p>
                     <button class="add-to-calendar-btn"
-                        onclick="addToCalendar('Reception & Gatherings', 'Haji Appa Thaika Street, Kayalpattinam, Tamil Nadu, India', '2025-09-06T16:30:00')">Add
+                        onclick="addToCalendar('Reception & Gatherings', 'Haji Appa Thaika Street, Kayalpattinam, Tamil Nadu, India', '2025-12-26T16:30:00')">Add
                         to Calendar</button>
                 </div>
                 <div class="schedule-item">
                     <img src="https://placehold.co/80x80/A2D9CE/333333?text=Nikkah" class="card-img-circle" alt="Nikkah"
                         onerror="this.src='https://placehold.co/80x80/A2D9CE/333333?text=Error';" />
-                    <div class="schedule-date">Sunday, September 7, 2025</div>
+                    <div class="schedule-date">Friday, December 27, 2025</div>
                     <div class="schedule-event">✨ Our Nikkah – A Celebration of Love & Deen ✨</div>
                     <div class="schedule-time">9:30 AM</div>
                     <p style="margin-top: 1rem; opacity: 0.9;">📍 Majlisul Bukharis Shareef, Muthuwappa Thaika St,
                         Odakkarai, Kayalpattinam, Tamil Nadu, India</p>
                     <button class="add-to-calendar-btn"
-                        onclick="addToCalendar('Our Nikkah – A Celebration of Love & Deen', 'Majlisul Bukharis Shareef, Muthuwappa Thaika St, Odakkarai, Kayalpattinam, Tamil Nadu, India', '2025-09-07T09:30:00')">Add
+                        onclick="addToCalendar('Our Nikkah – A Celebration of Love & Deen', 'Majlisul Bukharis Shareef, Muthuwappa Thaika St, Odakkarai, Kayalpattinam, Tamil Nadu, India', '2025-12-27T09:30:00')">Add
                         to Calendar</button>
                 </div>
             </div>
@@ -1655,7 +1758,7 @@
             <h2 class="section-title">💌 RSVP</h2>
             <p style="font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.6;">
                 We would be honored by your presence at our wedding celebration.<br>
-                Please RSVP by <strong>August 28th</strong> to help us with smooth arrangements and catering
+                Please RSVP by <strong>December 15th</strong> to help us with smooth arrangements and catering
                 preparations.
             </p>
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">
@@ -1687,18 +1790,19 @@
 
             <div class="qna-item">
                 <h3>When is the RSVP deadline?</h3>
-                <p>We kindly request your RSVP by <strong>August 28th</strong> for smooth arrangements and catering
+                <p>We kindly request your RSVP by <strong>December 15th</strong> for smooth arrangements and catering
                     preparations.</p>
             </div>
 
             <div class="qna-item">
                 <h3>What will the weather be like?</h3>
-                <p>Kayalpattinam usually enjoys warm and humid coastal weather in September:</p>
+                <p>Kayalpattinam usually enjoys pleasant coastal weather in December:</p>
                 <ul>
-                    <li>Daytime: Warm and sunny (around 31–34°C)</li>
-                    <li>Evening: Pleasant with a light sea breeze (around 26–28°C)</li>
+                    <li>Daytime: Mild and comfortable (around 28–30°C)</li>
+                    <li>Evening: Cool with a refreshing sea breeze (around 22–25°C)</li>
                 </ul>
-                <p><strong>Note:</strong> There's a small chance of light showers — a shawl or umbrella might be useful.
+                <p><strong>Note:</strong> December is one of the best times to visit with lovely weather — light layers
+                    would be perfect.
                     😊</p>
             </div>
 
@@ -1788,7 +1892,7 @@
     <script>
         // Enhanced Countdown Timer Logic
         function updateCountdown() {
-            const weddingDate = new Date('September 7, 2025 09:30:00').getTime();
+            const weddingDate = new Date('December 27, 2025 09:30:00').getTime();
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
@@ -1813,6 +1917,23 @@
         // Update countdown every second
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call to display countdown immediately
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
 
         // Enhanced smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
