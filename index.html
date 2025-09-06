@@ -3,1393 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Muhsin & Fathima - Wedding Invitation</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap"
-        rel="stylesheet">
+    
+    <!-- Optimized font loading for mobile -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <style>
-        /* Root variables for consistent theming */
-        :root {
-            --primary: #2C3E50;
-            /* Deep Blue/Charcoal */
-            --secondary: #A2D9CE;
-            /* Soft Teal */
-            --accent: #DAA520;
-            /* Goldenrod */
-            --accent-light: #F4E5A1;
-            /* Light golden */
-            --bg-gradient: linear-gradient(135deg, #2C3E50 0%, #A2D9CE 100%);
-            /* Main background gradient */
-            --card-bg: rgba(255, 255, 255, 0.95);
-            /* Slightly transparent white for cards */
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            /* More subtle transparent white for glassmorphism */
-            --overlay: rgba(44, 62, 80, 0.35);
-            /* Darker overlay based on primary color */
-            --text-dark: #333333;
-            /* Dark text color */
-            --text-light: #FFFFFF;
-            /* Light text color */
-            --text-muted: #666666;
-            /* Muted text color */
-            --divider: linear-gradient(90deg, #A2D9CE, #2C3E50, #A2D9CE);
-            /* Gradient for dividers */
-            --shadow-soft: 0 8px 32px rgba(44, 62, 80, 0.12);
-            --shadow-medium: 0 12px 40px rgba(44, 62, 80, 0.18);
-            --shadow-strong: 0 20px 60px rgba(44, 62, 80, 0.25);
-        }
-
-        /* Universal box-sizing for consistent layout */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body styling */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            /* Prevent horizontal scroll */
-            line-height: 1.6;
-        }
-
-        /* Main container for content centering */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            overflow: hidden;
-            padding-bottom: 80px;
-            /* Space for wave */
-        }
-
-        /* Enhanced background pattern for hero section */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-                radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-                radial-gradient(circle at 40% 20%, rgba(218, 165, 32, 0.1) 1px, transparent 1px),
-                radial-gradient(circle at 60% 80%, rgba(218, 165, 32, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px, 60px 60px, 30px 30px, 40px 40px;
-            animation: float 20s ease-in-out infinite;
-            /* Floating animation */
-        }
-
-        /* Floating animation for background pattern */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(2deg);
-            }
-        }
-
-        /* Hero content styling */
-        .hero-content {
-            text-align: center;
-            color: var(--text-light);
-            z-index: 10;
-            /* Ensure content is above background elements */
-            position: relative;
-        }
-
-        /* Islamic pattern icon */
-        .islamic-pattern {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
-            /* Fade in animation */
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Couple names styling */
-        .couple-names {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
-            /* Fade in animation */
-            background: linear-gradient(45deg, #ffffff, var(--accent-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Wedding date styling */
-        .wedding-date {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1.5s forwards;
-            /* Fade in animation */
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        /* Location styling */
-        .location {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 2s forwards;
-            /* Fade in animation */
-            font-weight: 400;
-        }
-
-        /* Scroll indicator at the bottom of hero */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--text-light);
-            animation: bounce 2s infinite, pulse 1.5s infinite alternate;
-            /* Bounce and pulse animation */
-            z-index: 10;
-            /* Ensure it's above other elements */
-            font-weight: 500;
-        }
-
-        /* Bounce animation for scroll indicator */
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* Pulse animation for scroll indicator */
-        @keyframes pulse {
-            from {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0.7;
-            }
-        }
-
-        /* Fade in up animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Navigation bar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            /* Enhanced glassmorphism effect */
-            z-index: 1000;
-            transform: translateY(-100%);
-            /* Hidden by default */
-            transition: transform 0.3s ease;
-            height: 70px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        /* Navigation container */
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Navigation logo */
-        .nav-logo span {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        /* Hamburger menu (hidden by default) */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        /* Hamburger animation */
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Make navigation visible */
-        nav.visible {
-            transform: translateY(0);
-        }
-
-        /* Navigation links styling */
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-            background: rgba(44, 62, 80, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Mobile Navigation */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                padding-top: 50px;
-                gap: 2rem;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .nav-links.active {
-                transform: translateX(0);
-            }
-
-            .nav-links li {
-                width: 80%;
-                text-align: center;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 15px 20px;
-                font-size: 1.1rem;
-                border-radius: 10px;
-                background: rgba(44, 62, 80, 0.05);
-                margin: 5px 0;
-            }
-
-            .nav-links a:hover {
-                background: rgba(44, 62, 80, 0.1);
-                transform: scale(1.05);
-            }
-        }
-
-        /* General section styling */
-        .section {
-            padding: 80px 0 70px 0;
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            /* Reduced initial state */
-            filter: blur(3px) brightness(0.9);
-            /* Less blur and lighter */
-            transition:
-                opacity 0.6s cubic-bezier(.23, 1.01, .32, 1),
-                /* Faster transition */
-                transform 0.6s cubic-bezier(.23, 1.01, .32, 1),
-                filter 0.6s cubic-bezier(.23, 1.01, .32, 1);
-            will-change: opacity, transform, filter;
-            /* Optimize for animation */
-            background: var(--card-bg);
-            /* Default section background */
-            border-radius: 24px;
-            /* More rounded corners for sections */
-            box-shadow: var(--shadow-medium);
-            /* Enhanced shadow */
-            margin: 50px 20px;
-            /* Increased margin for sections */
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Section background pattern */
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 85% 10%, rgba(162, 217, 206, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 15% 90%, rgba(218, 165, 32, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .section .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Visible state for sections */
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1) rotateX(0deg);
-            filter: blur(0) brightness(1);
-        }
-
-        /* Staggered animation for children within visible sections */
-        .section.visible .container>* {
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-            /* Less pronounced translateY */
-            animation: sectionChildIn 0.5s cubic-bezier(.23, 1.01, .32, 1) forwards;
-            /* Faster and smoother */
-        }
-
-        .section.visible .container>*:nth-child(1) {
-            animation-delay: 0.05s;
-        }
-
-        .section.visible .container>*:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .section.visible .container>*:nth-child(3) {
-            animation-delay: 0.15s;
-        }
-
-        .section.visible .container>*:nth-child(4) {
-            animation-delay: 0.2s;
-        }
-
-        .section.visible .container>*:nth-child(5) {
-            animation-delay: 0.25s;
-        }
-
-        .section.visible .container>*:nth-child(6) {
-            animation-delay: 0.3s;
-        }
-
-        .section.visible .container>*:nth-child(7) {
-            animation-delay: 0.35s;
-        }
-
-        /* Animation for children within sections */
-        @keyframes sectionChildIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Section title styling */
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-            letter-spacing: 1px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        /* Schedule Section specific styling */
-        .schedule {
-            background: linear-gradient(135deg, #fff 80%, var(--secondary) 100%);
-        }
-
-        /* Grid layout for schedule items */
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        /* Schedule item card styling */
-        .schedule-item {
-            background: var(--card-bg);
-            color: var(--text-dark);
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            padding: 2.5rem 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(162, 217, 206, 0.2);
-        }
-
-        .schedule-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-        }
-
-        /* Schedule item hover effect */
-        .schedule-item:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: var(--shadow-strong);
-            border-color: var(--accent);
-        }
-
-        /* Schedule item visible animation */
-        .schedule-item.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Schedule date styling */
-        .schedule-date {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Schedule event styling */
-        .schedule-event {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        /* Schedule time styling */
-        .schedule-time {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        /* Travel Section specific styling */
-        .travel {
-            background: linear-gradient(135deg, #f8f9fa 80%, var(--primary) 100%);
-        }
-
-        /* Grid layout for travel items */
-        .travel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        /* Travel item card styling */
-        .travel-item {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(162, 217, 206, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .travel-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(162, 217, 206, 0.05) 0%, transparent 70%);
-            transition: transform 0.6s ease;
-            transform: scale(0);
-        }
-
-        .travel-item:hover::before {
-            transform: scale(1);
-        }
-
-        /* Travel item hover effect */
-        .travel-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--secondary);
-        }
-
-        /* Travel icon styling */
-        .travel-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        /* Cultural Section specific styling */
-        .cultural {
-            background: white;
-        }
-
-        /* Grid layout for cultural items */
-        .cultural-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        /* Cultural item card styling */
-        .cultural-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 2.5rem;
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(162, 217, 206, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cultural-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .cultural-item:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* Cultural item hover effect */
-        .cultural-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .cultural-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        /* Food Section Styling */
-        .food-section {
-            background: linear-gradient(135deg, var(--accent-light) 0%, #ffffff 100%);
-        }
-
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .food-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(218, 165, 32, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .food-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(218, 165, 32, 0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .food-item:hover::before {
-            opacity: 1;
-        }
-
-        .food-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--accent);
-        }
-
-        .food-emoji {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .food-item h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        /* Restaurant item styling */
-        .restaurant-item {
-            background: linear-gradient(135deg, white 0%, var(--accent-light) 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 500;
-            color: var(--primary);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(218, 165, 32, 0.3);
-        }
-
-        .restaurant-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-soft);
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: white;
-        }
-
-        /* RSVP Section specific styling */
-        .rsvp {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        /* RSVP button styling */
-        .rsvp-button {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--text-dark);
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            padding: 1.5rem 3rem;
-            margin-top: 2rem;
-            box-shadow: var(--shadow-medium);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            letter-spacing: 1px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rsvp-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .rsvp-button:hover::before {
-            left: 100%;
-        }
-
-        /* RSVP button hover effect */
-        .rsvp-button:hover {
-            background: var(--primary);
-            color: var(--text-light);
-            transform: scale(1.05) translateY(-2px);
-        }
-
-        /* Countdown timer styling */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        /* Countdown item styling */
-        .countdown-item {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--text-light);
-            border-radius: 12px;
-            min-width: 90px;
-            padding: 1.5rem 1rem;
-            box-shadow: var(--shadow-soft);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .countdown-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Countdown number styling */
-        .countdown-number {
-            font-size: 2.2rem;
-            font-weight: bold;
-            display: block;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Countdown label styling */
-        .countdown-label {
-            font-size: 1rem;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        /* Footer styling */
-        footer {
-            background: linear-gradient(135deg, #333 0%, #2C3E50 100%);
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 50px;
-            position: relative;
-        }
-
-        /* Responsive design adjustments */
-        @media (max-width: 768px) {
-            .couple-names {
-                font-size: 3rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .countdown {
-                gap: 1rem;
-            }
-
-            .countdown-item {
-                min-width: 70px;
-                padding: 1rem 0.5rem;
-            }
-
-            .section {
-                padding: 50px 0 40px 0;
-                margin: 30px 10px;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .travel-grid,
-            .cultural-grid,
-            .food-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Floating elements for background decoration */
-        .floating-element {
-            position: fixed;
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.1);
-            animation: floatAround 15s linear infinite;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        /* Animation for floating elements */
-        @keyframes floatAround {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-            }
-
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-            }
-        }
-
-        /* Welcome modal styling */
-        .welcome-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .welcome-modal h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .welcome-modal p {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        /* Welcome button styling */
-        .welcome-btn {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: var(--text-light);
-            border: none;
-            border-radius: 30px;
-            padding: 1.2rem 3rem;
-            font-size: 1.3rem;
-            font-weight: bold;
-            box-shadow: var(--shadow-medium);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .welcome-btn:hover {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scale(1.05) translateY(-2px);
-        }
-
-        /* Divider styling */
-        .divider {
-            width: 100px;
-            height: 5px;
-            background: var(--divider);
-            border-radius: 3px;
-            margin: 2.5rem auto 2rem auto;
-            opacity: 0.8;
-        }
-
-        /* Slideshow container */
-        #slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        /* Individual slide in slideshow */
-        #slideshow .slide {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 2s ease;
-        }
-
-        /* Active slide in slideshow */
-        #slideshow .slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-
-        /* Enhanced overlay for slideshow */
-        #slideshow .slideshow-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--overlay) 0%, rgba(44, 62, 80, 0.4) 100%);
-            z-index: 2;
-        }
-
-        /* Enhanced glassmorphism card for hero section */
-        .glass-card {
-            background: var(--glass-bg);
-            box-shadow: var(--shadow-strong);
-            backdrop-filter: blur(15px);
-            border-radius: 32px;
-            padding: 3rem 2.5rem 2.5rem 2.5rem;
-            margin: 0 auto;
-            max-width: 580px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
-        /* Hero introduction text */
-        .hero-intro {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-top: 1.5rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            line-height: 1.6;
-        }
-
-        /* Ensure hero content is above slideshow */
-        .hero,
-        .hero-content,
-        .glass-card {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Animation for hero glass card */
-        .glass-card.animate-hero {
-            opacity: 0;
-            transform: translateY(60px) scale(0.97);
-            animation: heroFadeIn 1.2s cubic-bezier(.23, 1.01, .32, 1) 0.2s forwards;
-        }
-
-        /* Keyframe for hero card fade in */
-        @keyframes heroFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Animation for countdown */
-        .countdown.animate-countdown {
-            opacity: 0;
-            transform: scale(0.92);
-            animation: countdownIn 1.2s cubic-bezier(.23, 1.01, .32, 1) 0.8s forwards;
-        }
-
-        /* Keyframe for countdown fade in */
-        @keyframes countdownIn {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Styling for circular images in hero and cards */
-        .card-img-circle,
-        .hero-img-circle,
-        .gallery-img {
-            box-shadow: var(--shadow-medium);
-            border: 4px solid #fff;
-        }
-
-        /* Responsive adjustments for hero wave */
-        @media (max-width: 900px) {
-            .hero {
-                padding-bottom: 40px;
-            }
-
-            .hero-wave svg {
-                height: 60px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding-bottom: 20px;
-            }
-
-            .hero-wave svg {
-                height: 30px;
-            }
-        }
-
-        /* Hero images (circular, decorative) */
-        .hero-images {
-            position: absolute;
-            top: 10%;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .hero-img-circle {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: var(--shadow-medium);
-            border: 4px solid #fff;
-            opacity: 0.95;
-        }
-
-        .hero-img-circle.left {
-            margin-left: 2vw;
-        }
-
-        .hero-img-circle.right {
-            margin-right: 2vw;
-        }
-
-        /* Card image styling */
-        .card-img-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-soft);
-            border: 3px solid #fff;
-        }
-
-        /* Gallery grid layout */
-        .gallery-grid {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        /* Gallery image styling */
-        .gallery-img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: var(--shadow-medium);
-            border: 4px solid #fff;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Gallery image hover effect */
-        .gallery-img:hover {
-            transform: scale(1.1) rotate(-3deg);
-            box-shadow: var(--shadow-strong);
-        }
-
-        /* Smooth scroll padding for fixed nav */
-        html {
-            scroll-padding-top: 90px;
-            /* Adjust to match nav height */
-            scroll-behavior: smooth;
-        }
-
-        /* Responsive adjustments for scroll padding and nav height */
-        @media (max-width: 600px) {
-            html {
-                scroll-padding-top: 70px;
-            }
-
-            nav {
-                height: 56px;
-            }
-        }
-
-        /* Hero wave SVG styling */
-        .hero-wave {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -1px;
-            width: 100%;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        /* General responsive adjustments */
-        @media (max-width: 900px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .glass-card {
-                padding: 2rem 1rem;
-                max-width: 95vw;
-            }
-
-            .couple-names {
-                font-size: 2.5rem;
-            }
-
-            .section {
-                padding: 50px 0 40px 0;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        .add-to-calendar-btn {
-            background: var(--primary);
-            color: var(--text-light);
-            border: none;
-            border-radius: 25px;
-            padding: 0.8rem 1.8rem;
-            font-size: 1rem;
-            font-weight: 500;
-            margin-top: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .add-to-calendar-btn:hover {
-            background: var(--accent);
-            color: var(--text-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .qna-item {
-            background: var(--card-bg);
-            border-radius: 18px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(162, 217, 206, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .qna-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, var(--secondary), var(--accent));
-            transform: scaleY(0);
-            transition: transform 0.4s ease;
-        }
-
-        .qna-item:hover::before {
-            transform: scaleY(1);
-        }
-
-        .qna-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .qna-item h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
-        .qna-item p,
-        .qna-item ul {
-            color: var(--text-dark);
-            line-height: 1.7;
-            opacity: 0.9;
-        }
-
-        .qna-item ul {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 0.8rem;
-        }
-
-        .qna-item ul li {
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .qna-item ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Special info boxes */
-        .info-box {
-            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(162, 217, 206, 0.1) 100%);
-            border-radius: 18px;
-            padding: 2.5rem;
-            margin-top: 3rem;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(162, 217, 206, 0.2);
-            text-align: center;
-        }
-
-        .info-box h3 {
-            color: var(--primary);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-box p {
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .highlight-text {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        /* Enhanced restaurant grid */
-        .restaurant-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-    </style>
+    
+    <!-- Mobile-optimized CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA meta tags for mobile -->
+    <meta name="theme-color" content="#2C3E50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 
 <body>
-    <!-- Welcome Modal - Appears on page load -->
+    <!-- Welcome Modal - Mobile Optimized -->
     <div id="welcomeModal" class="welcome-modal">
-        <h1>Muhsin & Fathima</h1>
-        <p>May your presence bring barakah and joy<br>We invite you to celebrate our wedding<br>on <strong>December 27,
-                2025</strong><br>in the beautiful coastal town of <strong>Kayalpattinam, Tamil Nadu</strong></p>
-        <button class="welcome-btn" onclick="closeWelcome()">Let's Celebrate! 🎉</button>
+        <div class="welcome-content">
+            <div class="welcome-icon">💍</div>
+            <h1>Muhsin & Fathima</h1>
+            <p>Assalamu Alaikum!<br>
+            We invite you to celebrate our wedding<br>
+            <strong>December 27, 2025</strong><br>
+            Kayalpattinam, Tamil Nadu</p>
+            <button class="welcome-btn" onclick="closeWelcome()">
+                <span>Join Our Celebration</span>
+                <span class="btn-icon">🎉</span>
+            </button>
+        </div>
     </div>
 
-    <!-- Background Slideshow Container and Overlay -->
-    <div id="slideshow">
-        <!-- Enhanced slideshow images (using placeholder images for now) -->
-        <img src="https://placehold.co/1920x1080/2C3E50/FFFFFF?text=Beautiful+Kayalpattinam+Mosque" class="slide active"
-            alt="Kayalpattinam Mosque"
-            onerror="this.src='https://placehold.co/1920x1080/2C3E50/FFFFFF?text=Image+Load+Error';" />
-        <img src="https://placehold.co/1920x1080/A2D9CE/333333?text=Coastal+Beauty" class="slide" alt="Coastal Beauty"
-            onerror="this.src='https://placehold.co/1920x1080/A2D9CE/333333?text=Image+Load+Error';" />
-        <img src="https://placehold.co/1920x1080/DAA520/333333?text=Traditional+Wedding" class="slide"
-            alt="Traditional Wedding"
-            onerror="this.src='https://placehold.co/1920x1080/DAA520/333333?text=Image+Load+Error';" />
-        <div class="slideshow-overlay"></div>
-    </div>
-
-    <!-- Navigation Bar -->
+    <!-- Mobile Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -1404,722 +56,412 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#schedule">Schedule</a></li>
                 <li><a href="#travel">Travel</a></li>
-                <li><a href="#cultural">Cultural</a></li>
+                <li><a href="#cultural">Explore</a></li>
                 <li><a href="#food">Food</a></li>
-                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#rsvp">RSVP</a></li>
-                <li><a href="#qna">Q&A</a></li>
+                <li><a href="#qna">FAQ</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Mobile First -->
     <section class="hero" id="home">
-        <div class="hero-images">
-            <!-- Decorative circular images (using placeholders) -->
-            <img src="https://placehold.co/120x120/A2D9CE/333333?text=Muhsin" class="hero-img-circle left" alt="Muhsin"
-                onerror="this.src='https://placehold.co/120x120/A2D9CE/333333?text=Error';" />
-            <img src="https://placehold.co/120x120/2C3E50/FFFFFF?text=Fathima" class="hero-img-circle right"
-                alt="Fathima" onerror="this.src='https://placehold.co/120x120/2C3E50/FFFFFF?text=Error';" />
-        </div>
-        <div class="hero-content glass-card animate-hero">
-            <div class="islamic-pattern">☪</div>
-            <h1 class="couple-names">Muhsin & Fathima</h1>
-            <p class="wedding-date">Friday, December 27, 2025</p>
-            <p class="location">📍 Majlis-ul Bukhari Shareef, Kayalpattinam</p>
-            <div class="divider"></div>
-            <p class="hero-intro">
-                <em>"We're getting married, Alhamdulillah!"</em><br>
-                It means the world to us to share this special moment with you.<br>
-                <span class="highlight-text">Kindly remember us in your valuable duas</span> as we begin this sacred
-                journey together.
-            </p>
-            <div class="countdown animate-countdown" id="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Days</span>
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="couple-photos">
+                <div class="photo-circle left-photo">
+                    <img src="https://placehold.co/100x100/A2D9CE/333333?text=M" alt="Muhsin">
                 </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Hours</span>
+                <div class="photo-circle right-photo">
+                    <img src="https://placehold.co/100x100/2C3E50/FFFFFF?text=F" alt="Fathima">
                 </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Seconds</span>
+            </div>
+            
+            <div class="hero-card">
+                <div class="islamic-pattern">☪</div>
+                <h1 class="couple-names">Muhsin & Fathima</h1>
+                <p class="wedding-date">Saturday, December 27, 2025</p>
+                <p class="location">📍 Kayalpattinam, Tamil Nadu</p>
+                
+                <div class="divider"></div>
+                
+                <p class="hero-intro">
+                    <em>"We're getting married, Alhamdulillah!"</em><br>
+                    Join us in celebrating this blessed union.<br>
+                    <span class="highlight-text">Your duas mean the world to us</span>
+                </p>
+                
+                <!-- Mobile-Optimized Countdown -->
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Sec</span>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <div class="scroll-indicator">
-            <span>↓ Discover More</span>
-        </div>
-        <!-- Decorative SVG wave for smooth transition -->
-        <div class="hero-wave">
-            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="#fff" />
-            </svg>
+            <span>Swipe up to explore</span>
+            <div class="scroll-arrow">↑</div>
         </div>
     </section>
 
-    <!-- Schedule Section -->
-    <section class="section schedule" id="schedule">
+    <!-- Schedule Section - Mobile Optimized -->
+    <section class="section schedule-section" id="schedule">
         <div class="container">
-            <h2 class="section-title">Wedding Schedule</h2>
-            <div class="schedule-grid">
-                <div class="schedule-item">
-                    <img src="https://placehold.co/80x80/2C3E50/FFFFFF?text=Reception" class="card-img-circle"
-                        alt="Reception" onerror="this.src='https://placehold.co/80x80/2C3E50/FFFFFF?text=Error';" />
-                    <div class="schedule-date">Thursday, December 26, 2025</div>
-                    <div class="schedule-event">Reception & Gatherings</div>
-                    <div class="schedule-time">4:30 PM</div>
-                    <p style="margin-top: 1rem; opacity: 0.9;">📍 Haji Appa Thaika Street, Kayalpattinam, Tamil Nadu,
-                        India</p>
-                    <button class="add-to-calendar-btn"
-                        onclick="addToCalendar('Reception & Gatherings', 'Haji Appa Thaika Street, Kayalpattinam, Tamil Nadu, India', '2025-12-26T16:30:00')">Add
-                        to Calendar</button>
+            <h2 class="section-title">📅 Wedding Schedule</h2>
+            
+            <div class="schedule-cards">
+                <!-- Reception Card -->
+                <div class="schedule-card reception-card">
+                    <div class="card-header">
+                        <div class="event-icon">🌟</div>
+                        <div class="event-date">Friday, Dec 26</div>
+                    </div>
+                    <h3 class="event-title">Reception & Gatherings</h3>
+                    <div class="event-time">4:30 PM</div>
+                    <div class="event-location">
+                        <span class="location-icon">📍</span>
+                        Haji Appa Thaika Street, Kayalpattinam
+                    </div>
+                    <button class="add-calendar-btn" 
+                            onclick="addToCalendar('Reception & Gatherings', 'Haji Appa Thaika Street, Kayalpattinam', '2025-12-26T16:30:00')">
+                        Add to Calendar
+                    </button>
                 </div>
-                <div class="schedule-item">
-                    <img src="https://placehold.co/80x80/A2D9CE/333333?text=Nikkah" class="card-img-circle" alt="Nikkah"
-                        onerror="this.src='https://placehold.co/80x80/A2D9CE/333333?text=Error';" />
-                    <div class="schedule-date">Friday, December 27, 2025</div>
-                    <div class="schedule-event">✨ Our Nikkah – A Celebration of Love & Deen ✨</div>
-                    <div class="schedule-time">9:30 AM</div>
-                    <p style="margin-top: 1rem; opacity: 0.9;">📍 Majlisul Bukharis Shareef, Muthuwappa Thaika St,
-                        Odakkarai, Kayalpattinam, Tamil Nadu, India</p>
-                    <button class="add-to-calendar-btn"
-                        onclick="addToCalendar('Our Nikkah – A Celebration of Love & Deen', 'Majlisul Bukharis Shareef, Muthuwappa Thaika St, Odakkarai, Kayalpattinam, Tamil Nadu, India', '2025-12-27T09:30:00')">Add
-                        to Calendar</button>
+                
+                <!-- Nikkah Card -->
+                <div class="schedule-card nikkah-card featured">
+                    <div class="card-header">
+                        <div class="event-icon">🕌</div>
+                        <div class="event-date">Saturday, Dec 27</div>
+                    </div>
+                    <h3 class="event-title">Our Nikkah Ceremony</h3>
+                    <div class="event-subtitle">A Celebration of Love & Deen</div>
+                    <div class="event-time">9:30 AM</div>
+                    <div class="event-location">
+                        <span class="location-icon">📍</span>
+                        Majlisul Bukharis Shareef, Kayalpattinam
+                    </div>
+                    <button class="add-calendar-btn primary" 
+                            onclick="addToCalendar('Our Nikkah Ceremony', 'Majlisul Bukharis Shareef, Kayalpattinam', '2025-12-27T09:30:00')">
+                        Add to Calendar
+                    </button>
                 </div>
             </div>
-            <div class="info-box">
-                <h3>A Celebration of Love & Deen</h3>
-                <p>
-                    With the blessings of Allah (SWT), our Nikkah will be solemnized in the presence of close family and
-                    dear friends. The ceremony will be held in accordance with Islamic traditions, with separate seating
-                    for brothers
-                    and sisters.
-                </p>
-                <p class="highlight-text">
-                    We kindly request your heartfelt duas as we begin this sacred journey together.
-                    Lunch will be served after the ceremony, and we would be honored by your presence.
-                </p>
-                <p style="margin-top: 1.5rem; font-style: italic;">
-                    🌟 Join with Us in Elegant Cultural Dress 🌟
-                </p>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                    For our dear ones who are unable to attend in person, we kindly ask for your heartfelt duas and
-                    blessings.
-                </p>
+            
+            <div class="info-card">
+                <h3>🤲 Your Prayers Requested</h3>
+                <p>With separate seating arrangements for brothers and sisters, join us in this blessed ceremony. Lunch will be served after the Nikkah.</p>
+                <p class="dress-code">✨ Dress Code: Elegant Cultural Attire</p>
             </div>
         </div>
     </section>
 
-    <!-- Travel Section -->
-    <section class="section travel" id="travel">
+    <!-- Travel Section - Mobile Cards -->
+    <section class="section travel-section" id="travel">
         <div class="container">
-            <h2 class="section-title">Travel Information</h2>
-            <div class="travel-grid">
-                <div class="travel-item">
-                    <img src="https://placehold.co/80x80/DAA520/333333?text=Airport" class="card-img-circle"
-                        alt="Airport" onerror="this.src='https://placehold.co/80x80/DAA520/333333?text=Error';" />
+            <h2 class="section-title">🚗 Getting There</h2>
+            
+            <div class="travel-cards">
+                <div class="travel-card">
                     <div class="travel-icon">✈️</div>
-                    <h3>Nearest Airport</h3>
+                    <h3>By Air</h3>
                     <p><strong>Tuticorin Airport (TCR)</strong></p>
-                    <p>Also known as Thoothukudi Airport</p>
-                    <p>📍 Approx. 30 km from Kayalpattinam</p>
-                    <p>🕐 Travel time: 45mins to 1 hour by road</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">Cabs and local taxis available outside
-                        terminal</p>
+                    <div class="travel-info">
+                        <span>📍 30 km away</span>
+                        <span>⏱️ 45 min drive</span>
+                    </div>
                 </div>
-                <div class="travel-item">
-                    <img src="https://placehold.co/80x80/2C3E50/FFFFFF?text=Train" class="card-img-circle" alt="Train"
-                        onerror="this.src='https://placehold.co/80x80/2C3E50/FFFFFF?text=Error';" />
+                
+                <div class="travel-card">
                     <div class="travel-icon">🚆</div>
-                    <h3>Railway Station</h3>
-                    <p><strong>Kayalpattinam Station (KZY)</strong></p>
-                    <p>📍 Located within town limits</p>
-                    <p><strong>Alternate:</strong> Tirunelveli Junction (TEN)</p>
-                    <p>📍 Approx. 45 km from Kayalpattinam</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">Well-connected from Chennai,
-                        Bangalore, Madurai</p>
+                    <h3>By Train</h3>
+                    <p><strong>Kayalpattinam Station</strong></p>
+                    <div class="travel-info">
+                        <span>📍 In town</span>
+                        <span>⏱️ Walking distance</span>
+                    </div>
                 </div>
-                <div class="travel-item">
-                    <img src="https://placehold.co/80x80/A2D9CE/333333?text=Bus" class="card-img-circle" alt="Bus"
-                        onerror="this.src='https://placehold.co/80x80/A2D9CE/333333?text=Error';" />
+                
+                <div class="travel-card">
                     <div class="travel-icon">🚌</div>
-                    <h3>Bus Station</h3>
+                    <h3>By Bus</h3>
                     <p><strong>Kayalpattinam Bus Stand</strong></p>
-                    <p>📍 New Bus Stand, LF Road</p>
-                    <p>Local hub with frequent buses to/from nearby towns</p>
-                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">Autos and taxis readily available</p>
+                    <div class="travel-info">
+                        <span>📍 LF Road</span>
+                        <span>⏱️ Central location</span>
+                    </div>
                 </div>
-
             </div>
-
-            <div class="info-box">
-                <h3>🌟 Travel Tips for Our Guests</h3>
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; text-align: left;">
-                    <div>
-                        <p><strong>✓ Plan Ahead</strong><br>It's a peaceful town, so book your travel and stay early for
-                            better options.</p>
+            
+            <div class="travel-tips">
+                <h3>💡 Travel Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-icon">📅</span>
+                        <p>Book early for better options</p>
                     </div>
-                    <div>
-                        <p><strong>✓ What to Wear</strong><br>Light, modest clothing recommended for warm coastal
-                            weather.</p>
+                    <div class="tip-item">
+                        <span class="tip-icon">👕</span>
+                        <p>Light, modest clothing recommended</p>
                     </div>
-                    <div>
-                        <p><strong>✓ Getting Here</strong><br>Coming from Tirunelveli or Tuticorin? Let us know — we'll
-                            assist with coordination.</p>
+                    <div class="tip-item">
+                        <span class="tip-icon">🤝</span>
+                        <p>Need help? Just message us!</p>
                     </div>
-                    <div>
-                        <p><strong>✓ Stay Options</strong><br>We've arranged nearby accommodations. Reach out for
-                            assistance and recommendations.</p>
+                    <div class="tip-item">
+                        <span class="tip-icon">🏨</span>
+                        <p>Accommodations arranged nearby</p>
                     </div>
                 </div>
-                <p style="margin-top: 2rem; font-style: italic; color: var(--accent);">
-                    Need anything? Just message us — we're happy to help make your journey smooth! 💫
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- Cultural Section -->
-    <section class="section cultural" id="cultural">
+    <!-- Cultural Section - Mobile Carousel Style -->
+    <section class="section cultural-section" id="cultural">
         <div class="container">
-            <h2 class="section-title">💎 Discover Beautiful Kayalpattinam</h2>
-            <p
-                style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-muted); font-style: italic;">
-                "Kayal: Where Faith Meets History" - A soulful journey through time and tradition
-            </p>
-            <div class="cultural-grid">
-                <div class="cultural-item">
-                    <h3>🕌 Al Jami'ul Kabeer (பெரிய பள்ளிவாசல்)</h3>
-                    <p><strong>A Place of Faith and Heritage</strong></p>
-                    <p>The Grand Masjid stands as one of the oldest in the region, built over 1000 years ago by early
-                        Arab traders and scholars. For generations, it has been a center of prayer, learning, and
-                        community — known for its graceful
-                        architecture and deep roots in Islamic tradition.</p>
+            <h2 class="section-title">🕌 Discover Kayalpattinam</h2>
+            <p class="section-subtitle">"Where Faith Meets History"</p>
+            
+            <div class="cultural-scroll">
+                <div class="cultural-card">
+                    <div class="card-icon">🕌</div>
+                    <h3>Al Jami'ul Kabeer</h3>
+                    <p>The Grand Masjid, over 1000 years old, built by early Arab traders. A center of prayer and learning.</p>
                 </div>
-                <div class="cultural-item">
-                    <h3>🕌 Majlisul Bukhari Shareef</h3>
-                    <p><strong>Center of Spiritual Learning</strong></p>
-                    <p>A respected Islamic spiritual gathering place rooted in deep reverence for the teachings of Imam
-                        Al-Bukhari (Rahmatullahi Alaih). It serves as a center for du'a, mawlid, dhikr, and Islamic
-                        learning.
-                        The Annual Uroos draws people from near and far for spiritual reflection.</p>
+                
+                <div class="cultural-card">
+                    <div class="card-icon">📿</div>
+                    <h3>Majlisul Bukhari Shareef</h3>
+                    <p>Center of spiritual learning with deep reverence for Imam Al-Bukhari's teachings.</p>
                 </div>
-                <div class="cultural-item">
-                    <h3>🏖️ Kayalpattinam Beach</h3>
-                    <p><strong>Coastal Serenity</strong></p>
-                    <p>A quiet and peaceful beach where you can enjoy the cool breeze, watch the waves, and
-                        relax—perfect for early mornings or evenings. The gentle sound of waves creates a perfect
-                        backdrop for reflection and peace.</p>
+                
+                <div class="cultural-card">
+                    <div class="card-icon">🏖️</div>
+                    <h3>Kayalpattinam Beach</h3>
+                    <p>Peaceful coastal serenity with cool breeze and gentle waves for reflection.</p>
                 </div>
-                <div class="cultural-item">
-                    <h3>⚽ Spirit of Kayal Sports</h3>
-                    <p><strong>Community Energy</strong></p>
-                    <p>Experience the vibrant community spirit with football games on the beach and cricket matches.
-                        Whether it's a friendly evening match or exciting games during Ramadan nights, the energy is
-                        lively and welcoming to all.</p>
+                
+                <div class="cultural-card">
+                    <div class="card-icon">⚽</div>
+                    <h3>Community Sports</h3>
+                    <p>Experience vibrant beach football and cricket matches with welcoming energy.</p>
                 </div>
-                <div class="cultural-item">
-                    <h3>📸 Colonial & Coastal Charm</h3>
-                    <p><strong>Photography Paradise</strong></p>
-                    <p>From narrow streets and heritage homes to simple coastal views, Kayal offers many picturesque
-                        backdrops. Every corner tells a story of rich history and natural beauty.</p>
+                
+                <div class="cultural-card">
+                    <div class="card-icon">📸</div>
+                    <h3>Heritage Photography</h3>
+                    <p>Narrow streets, heritage homes, and coastal views offering picturesque backdrops.</p>
                 </div>
-                <div class="cultural-item">
-                    <h3>🌿 Ziyarath & Heritage Walk</h3>
-                    <p><strong>Spiritual Journey</strong></p>
-                    <p>A soulful ziyarath where Sufi saints, scholars, and traders once walked. Visit ancient masjids
-                        and maqbaras, and reflect in a place where Islamic heritage still whispers through the winds.
-                    </p>
+                
+                <div class="cultural-card">
+                    <div class="card-icon">🌿</div>
+                    <h3>Spiritual Ziyarath</h3>
+                    <p>Walk where Sufi saints and scholars once traveled, visiting ancient masjids and maqbaras.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Food Section -->
+    <!-- Food Section - Mobile Grid -->
     <section class="section food-section" id="food">
         <div class="container">
-            <h2 class="section-title">🍽️ Savor Kayal's Authentic Flavors</h2>
-            <p
-                style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-muted); font-style: italic;">
-                Don't leave without tasting Kayal's most beloved dishes — a culinary journey through tradition
-            </p>
-
+            <h2 class="section-title">🍽️ Taste of Kayal</h2>
+            <p class="section-subtitle">Don't leave without trying these local favorites!</p>
+            
             <div class="food-grid">
-                <div class="food-item">
-                    <span class="food-emoji">🌶️</span>
+                <div class="food-card">
+                    <div class="food-emoji">🌶️</div>
                     <h3>Maasi Vaada</h3>
-                    <p>The spicy crunch that defines Kayal! These traditional spiced fritters are a local favorite,
-                        perfect with evening tea and capturing the authentic taste of our coastal town.</p>
+                    <p>Spicy traditional fritters - perfect with evening tea!</p>
                 </div>
-                <div class="food-item">
-                    <span class="food-emoji">🥥</span>
+                
+                <div class="food-card">
+                    <div class="food-emoji">🥥</div>
                     <h3>Cashew Macaroons</h3>
-                    <p>Sweet delights that melt in your mouth! These traditional coconut and cashew treats are a
-                        specialty of Kayalpattinam, representing the town's Arabian trading heritage.</p>
+                    <p>Sweet coconut and cashew treats from Arabian trading heritage</p>
                 </div>
-                <div class="food-item">
-                    <span class="food-emoji">🍯</span>
+                
+                <div class="food-card">
+                    <div class="food-emoji">🍯</div>
                     <h3>Dhammadai</h3>
-                    <p>A traditional sweet with deep cultural roots, Dhammadai represents the rich culinary heritage
-                        passed down through generations in our beautiful coastal community.</p>
+                    <p>Traditional sweet representing our rich culinary heritage</p>
                 </div>
-                <div class="food-item">
-                    <span class="food-emoji">🌰</span>
+                
+                <div class="food-card">
+                    <div class="food-emoji">🌰</div>
                     <h3>Kayal Nuts Halwa</h3>
-                    <p>Rich, creamy, and absolutely divine! This local specialty halwa made with Kayal nuts is a
-                        must-try delicacy that captures the essence of our town's unique flavors.</p>
+                    <p>Rich, creamy local specialty - absolutely divine!</p>
                 </div>
-                <div class="food-item">
-                    <span class="food-emoji">🥤</span>
-                    <h3>Ice Apple Milkshake</h3>
-                    <p>A refreshing coastal treat! This cooling beverage made with local ice apples is perfect for the
-                        warm weather and offers a taste of pure tropical bliss.</p>
+                
+                <div class="food-card">
+                    <div class="food-emoji">🥤</div>
+                    <h3>Ice Apple Shake</h3>
+                    <p>Refreshing tropical beverage for warm coastal weather</p>
                 </div>
-                <div class="food-item">
-                    <span class="food-emoji">🍚</span>
-                    <h3>Traditional Biriyani</h3>
-                    <p>Aromatic and flavorful, our local biriyani style reflects the Arabian and South Indian influences
-                        that make Kayalpattinam's cuisine so unique and memorable.</p>
+                
+                <div class="food-card">
+                    <div class="food-emoji">🍚</div>
+                    <h3>Local Biriyani</h3>
+                    <p>Aromatic blend of Arabian and South Indian flavors</p>
                 </div>
             </div>
-
-            <div class="info-box">
-                <h3>🏪 Our Favorite Local Restaurants</h3>
-                <p style="margin-bottom: 2rem;">These beloved spots have been serving authentic Kayal flavors for
-                    generations</p>
-                <div class="restaurant-grid">
+            
+            <div class="restaurants-section">
+                <h3>🏪 Must-Visit Local Spots</h3>
+                <div class="restaurant-list">
                     <div class="restaurant-item">
-                        <strong>Souk - A Bazaar</strong><br>
-                        <span style="font-size: 0.9rem;">Authentic Middle Eastern & Local Cuisine</span>
+                        <strong>Souk - A Bazaar</strong>
+                        <span>Authentic Middle Eastern & Local</span>
                     </div>
                     <div class="restaurant-item">
-                        <strong>G Snacks</strong><br>
-                        <span style="font-size: 0.9rem;">Our Native Crunch's & Traditional Snacks</span>
+                        <strong>G Snacks</strong>
+                        <span>Traditional Snacks & Crunches</span>
                     </div>
                     <div class="restaurant-item">
-                        <strong>Thahira Bakery</strong><br>
-                        <span style="font-size: 0.9rem;">Macaroon Special & Fresh Baked Goods</span>
+                        <strong>Thahira Bakery</strong>
+                        <span>Macaroon Specialists</span>
                     </div>
                     <div class="restaurant-item">
-                        <strong>Jeyanthi Sweets</strong><br>
-                        <span style="font-size: 0.9rem;">இனிப்பு & பலகாரம் (Sweets & Savories)</span>
+                        <strong>Jeyanthi Sweets</strong>
+                        <span>இனிப்பு & பலகாரம்</span>
                     </div>
                 </div>
-                <p style="margin-top: 2rem; font-style: italic; color: var(--accent);">
-                    🌟 Pro tip: Try the Ice Apple Milkshake at any local vendor for the most refreshing experience!
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="section gallery" id="gallery">
+    <!-- RSVP Section - Mobile CTA -->
+    <section class="section rsvp-section" id="rsvp">
         <div class="container">
-            <h2 class="section-title">📸 Beautiful Memories</h2>
-            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-muted);">
-                Capturing the beauty of Kayalpattinam and our journey together
-            </p>
-            <div class="gallery-grid">
-                <!-- Enhanced placeholder images for gallery -->
-                <img src="https://placehold.co/200x200/2C3E50/FFFFFF?text=Kayal+Mosque" class="gallery-img"
-                    alt="Beautiful Mosque"
-                    onerror="this.src='https://placehold.co/200x200/2C3E50/FFFFFF?text=Error';" />
-                <img src="https://placehold.co/200x200/A2D9CE/333333?text=Beach+View" class="gallery-img"
-                    alt="Coastal Beauty" onerror="this.src='https://placehold.co/200x200/A2D9CE/333333?text=Error';" />
-                <img src="https://placehold.co/200x200/DAA520/333333?text=Heritage+Street" class="gallery-img"
-                    alt="Heritage Street" onerror="this.src='https://placehold.co/200x200/DAA520/333333?text=Error';" />
-                <img src="https://placehold.co/200x200/2C3E50/FFFFFF?text=Local+Food" class="gallery-img"
-                    alt="Traditional Food"
-                    onerror="this.src='https://placehold.co/200x200/2C3E50/FFFFFF?text=Error';" />
-                <img src="https://placehold.co/200x200/A2D9CE/333333?text=Sunset+Beach" class="gallery-img"
-                    alt="Sunset at Beach" onerror="this.src='https://placehold.co/200x200/A2D9CE/333333?text=Error';" />
-                <img src="https://placehold.co/200x200/DAA520/333333?text=Cultural+Scene" class="gallery-img"
-                    alt="Cultural Heritage"
-                    onerror="this.src='https://placehold.co/200x200/DAA520/333333?text=Error';" />
+            <h2 class="section-title">💌 Please RSVP</h2>
+            
+            <div class="rsvp-card">
+                <p class="rsvp-text">
+                    We would be honored by your presence at our wedding celebration.
+                </p>
+                <p class="rsvp-deadline">
+                    Please confirm by <strong>December 15th</strong>
+                </p>
+                <p class="rsvp-blessing">
+                    <span class="highlight-text">Your prayers are the greatest gift we could receive</span>
+                </p>
+                
+                <a href="mailto:your_email@example.com?subject=Wedding%20RSVP%20-%20Muhsin%20%26%20Fathima&body=Assalamu%20Alaikum%2C%0A%0AI%20would%20like%20to%20confirm%20my%20attendance.%0A%0AName%3A%20%0AGuests%3A%20%0AContact%3A%20%0A%0ABarakallahu%20lakuma!%0A%0AWith%20duas%2C" 
+                   class="rsvp-button">
+                    <span>Confirm Attendance</span>
+                    <span class="btn-icon">💝</span>
+                </a>
             </div>
-            <p
-                style="text-align: center; margin-top: 2.5rem; opacity: 0.8; color: var(--text-dark); font-style: italic;">
-                ✨ More beautiful moments from our celebration will be added here soon! ✨
-            </p>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section class="section rsvp" id="rsvp">
-        <div class="container">
-            <h2 class="section-title">💌 RSVP</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.6;">
-                We would be honored by your presence at our wedding celebration.<br>
-                Please RSVP by <strong>December 15th</strong> to help us with smooth arrangements and catering
-                preparations.
-            </p>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                <span class="highlight-text">Your prayers and blessings are the greatest gift we could receive.</span>
-            </p>
-            <a href="mailto:your_email@example.com?subject=Wedding%20RSVP%20-%20Muhsin%20%26%20Fathima&body=Assalamu%20Alaikum%2C%0A%0AI%20would%20like%20to%20confirm%20my%20attendance%20for%20your%20wedding%20celebration.%0A%0AName%3A%20%0ANumber%20of%20guests%3A%20%0AContact%20number%3A%20%0A%0ABarakallahu%20lakuma%20wa%20baraka%20alaikuma%20wa%20jama%27a%20bainakuma%20fi%20khair.%0A%0AWith%20love%20and%20duas%2C"
-                class="rsvp-button">Confirm Your Attendance 💝</a>
-
-            <div class="info-box" style="color: var(--text-dark);">
-                <h3>🎁 Gift Registry</h3>
-                <p style="font-size: 1.1rem; line-height: 1.7;">
-                    Your presence and prayers mean more to us — they are far more precious than any material gifts.
-                    The joy of having you celebrate with us is the greatest blessing we could ask for.
-                </p>
-                <p style="margin-top: 1rem; font-style: italic; color: var(--accent);">
-                    "The best gift you can give us is your heartfelt duas for our new journey together."
-                </p>
+            
+            <div class="gift-note">
+                <h3>🎁 About Gifts</h3>
+                <p>Your presence and heartfelt duas are more precious than any material gifts. The joy of having you celebrate with us is the greatest blessing we could ask for.</p>
             </div>
         </div>
     </section>
 
-    <!-- Q&A Section -->
-    <section class="section qna" id="qna">
+    <!-- FAQ Section - Mobile Accordion Style -->
+    <section class="section faq-section" id="qna">
         <div class="container">
-            <h2 class="section-title">❓ Questions & Answers</h2>
-            <p style="text-align: center; margin-bottom: 3rem; opacity: 0.9; font-size: 1.1rem;">
-                For all our friends and family who have lots of questions, please check out our Q & A first!
-            </p>
-
-            <div class="qna-item">
-                <h3>When is the RSVP deadline?</h3>
-                <p>We kindly request your RSVP by <strong>December 15th</strong> for smooth arrangements and catering
-                    preparations.</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>What will the weather be like?</h3>
-                <p>Kayalpattinam usually enjoys pleasant coastal weather in December:</p>
-                <ul>
-                    <li>Daytime: Mild and comfortable (around 28–30°C)</li>
-                    <li>Evening: Cool with a refreshing sea breeze (around 22–25°C)</li>
-                </ul>
-                <p><strong>Note:</strong> December is one of the best times to visit with lovely weather — light layers
-                    would be perfect.
-                    😊</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>Where should I park?</h3>
-                <p>There is plenty of free parking available near the entrance of both venues. Our coordination team
-                    will be present to guide you to the designated parking areas.</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>Is the wedding indoors or outdoors?</h3>
-                <p>The evening will begin with a <strong>reception under the open sky</strong> on Saturday, followed by
-                    the <strong>Nikkah ceremony held in an indoor setting</strong> on Sunday morning at the mosque.</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>Is it okay to take pictures with our phones and cameras during the wedding?</h3>
-                <p>Yes, but we gently ask you to <strong>respect the privacy of all attendees</strong>, as this is a
-                    religious occasion. Professional photographers will be covering the main events, and we encourage
-                    you to be present in the moment.</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>Will you live stream your ceremony?</h3>
-                <p>We truly hope to have everyone with us in person. For those unable to be there in person,
-                    <strong>live coverage will be available through our social media stories</strong> during the main
-                    events.
-                </p>
-            </div>
-
-            <div class="qna-item">
-                <h3>What time should I arrive?</h3>
-                <p>The celebration will begin with the <strong>reception at 4:30 PM on Saturday</strong>, and continue
-                    with the <strong>Nikkah ceremony at 9:30 AM on Sunday</strong>. We recommend arriving 15-20 minutes
-                    early for each event.</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>What should I wear?</h3>
-                <p>We encourage guests to join us in <strong>elegant cultural dress</strong>. Light, modest clothing is
-                    recommended for the warm coastal weather. Traditional Islamic or South Indian attire would be
-                    perfect!</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>Will food be provided?</h3>
-                <p>Yes! <strong>Lunch will be served after the Nikkah ceremony</strong> on Sunday. We'll be serving
-                    traditional Kayalpattinam cuisine along with some of the local specialties mentioned in our food
-                    section.</p>
-            </div>
-
-            <div class="qna-item">
-                <h3>Is there a gifts registry?</h3>
-                <p><strong>Your presence and prayers mean more to us</strong> — they are far more precious than any
-                    material gifts. The blessing of your company and heartfelt duas are what we treasure most.</p>
+            <h2 class="section-title">❓ Frequently Asked</h2>
+            <p class="section-subtitle">Quick answers to your questions!</p>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>When is the RSVP deadline?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Please RSVP by <strong>December 15th</strong> for smooth arrangements and catering.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What should I wear?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Elegant cultural dress is encouraged. Light, modest clothing is recommended for the warm coastal weather. Traditional Islamic or South Indian attire would be perfect!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What's the weather like in December?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pleasant coastal weather! Daytime: 28-30°C, Evening: 22-25°C with refreshing sea breeze. December is perfect for visiting!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Will food be provided?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Lunch will be served after the Nikkah ceremony featuring traditional Kayalpattinam cuisine and local specialties.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I take photos?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, but please respect everyone's privacy during this religious occasion. Professional photographers will cover main events.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Where should I park?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Free parking available near both venues. Our coordination team will guide you to designated areas.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer - Mobile Simplified -->
+    <footer class="footer">
         <div class="container">
-            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                <strong>Muhsin & Fathima Wedding 2025</strong>
-            </p>
-            <p style="opacity: 0.8;">
-                Made with ❤️ and lots of duas | Kayalpattinam, Tamil Nadu
-            </p>
-            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
-                "Rabbana hablana min azwajina wa dhurriyyatina qurrata a'yunin wa'j'alna lil-muttaqina imama"
-            </p>
+            <div class="footer-content">
+                <h3>Muhsin & Fathima</h3>
+                <p>December 27, 2025 • Kayalpattinam</p>
+                <p class="footer-dua">"Rabbana hablana min azwajina wa dhurriyyatina qurrata a'yunin"</p>
+                <p class="footer-credit">Made with ❤️ and lots of duas</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Enhanced Floating Elements -->
-    <div class="floating-element" style="left: 10%; animation-delay: 0s; font-size: 2rem;">☪</div>
-    <div class="floating-element" style="left: 20%; animation-delay: 3s;">✨</div>
-    <div class="floating-element" style="left: 80%; animation-delay: 6s; font-size: 1.8rem;">🕌</div>
-    <div class="floating-element" style="left: 90%; animation-delay: 9s;">💐</div>
-    <div class="floating-element" style="left: 5%; animation-delay: 2s; font-size: 2rem;">💖</div>
-    <div class="floating-element" style="left: 70%; animation-delay: 7s; font-size: 1.8rem;">🌸</div>
-    <div class="floating-element" style="left: 30%; animation-delay: 1s; font-size: 1.6rem;">💍</div>
-    <div class="floating-element" style="left: 60%; animation-delay: 4s; font-size: 2.2rem;">⭐</div>
-    <div class="floating-element" style="left: 15%; animation-delay: 5s; font-size: 1.7rem;">🌙</div>
-    <div class="floating-element" style="left: 85%; animation-delay: 8s; font-size: 1.9rem;">💫</div>
-
-    <script>
-        // Enhanced Countdown Timer Logic
-        function updateCountdown() {
-            const weddingDate = new Date('December 27, 2025 09:30:00').getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            // Calculate time components
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Update DOM elements with calculated values, padding with leading zeros
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-
-            // Display message if wedding date has passed
-            if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<h3 style="color: var(--accent); font-family: \'Playfair Display\', serif;">The Wedding Has Begun! Alhamdulillah! 🎉</h3>';
-            }
-        }
-
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call to display countdown immediately
-
-        // Hamburger menu functionality
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Enhanced smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Enhanced show/hide navigation on scroll
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const navbar = document.getElementById('navbar');
-
-            if (scrollTop > 100) {
-                navbar.classList.add('visible');
-            } else {
-                navbar.classList.remove('visible');
-            }
-
-            lastScrollTop = scrollTop;
-        });
-
-        // Enhanced Intersection Observer for festive section animations
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-
-                    // Special animation for schedule items
-                    if (entry.target.classList.contains('schedule')) {
-                        const items = entry.target.querySelectorAll('.schedule-item');
-                        items.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('visible');
-                                item.style.transition = 'transform 0.7s cubic-bezier(.23,1.01,.32,1), box-shadow 0.7s';
-                                item.style.transform = 'scale(1.05) rotate(-1deg)';
-                                setTimeout(() => {
-                                    item.style.transform = 'scale(1) rotate(0deg)';
-                                }, 400);
-                            }, index * 200);
-                        });
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Enhanced floating element creation
-        function createFloatingElement() {
-            const symbols = ['☪', '✨', '🕌', '💐', '🌸', '⭐', '💖', '💍', '🌙', '💫', '🤲', '📿'];
-            const element = document.createElement('div');
-            element.className = 'floating-element';
-            element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-            element.style.left = Math.random() * 100 + '%';
-            element.style.animationDelay = Math.random() * 5 + 's';
-            element.style.animationDuration = (Math.random() * 10 + 12) + 's';
-            element.style.fontSize = (Math.random() * 0.8 + 1.2) + 'rem';
-
-            document.body.appendChild(element);
-
-            // Remove element after animation
-            setTimeout(() => {
-                element.remove();
-            }, parseFloat(element.style.animationDuration) * 1000 + parseFloat(element.style.animationDelay) * 1000);
-        }
-
-        // Create new floating elements periodically
-        setInterval(createFloatingElement, 4000);
-
-        // Enhanced parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
-            }
-        });
-
-        // Enhanced confetti animation function
-        function launchConfetti() {
-            // Multiple confetti bursts
-            const colors = ['#A2D9CE', '#2C3E50', '#DAA520', '#FFFFFF', '#F3F3F3'];
-
-            confetti({
-                particleCount: 150,
-                spread: 100,
-                origin: { y: 0.6, x: 0.3 },
-                colors: colors
-            });
-
-            setTimeout(() => {
-                confetti({
-                    particleCount: 150,
-                    spread: 100,
-                    origin: { y: 0.6, x: 0.7 },
-                    colors: colors
-                });
-            }, 200);
-        }
-
-        // Enhanced welcome modal and initial animations
-        window.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                document.querySelector('.glass-card').classList.add('animate-hero');
-                document.querySelector('.countdown').classList.add('animate-countdown');
-            }, 100);
-            setTimeout(launchConfetti, 600);
-        });
-
-        // Enhanced close welcome modal function
-        function closeWelcome() {
-            const modal = document.getElementById('welcomeModal');
-            modal.style.opacity = 0;
-            modal.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                modal.style.display = 'none';
-                launchConfetti();
-
-                // Additional welcome confetti after delay
-                setTimeout(launchConfetti, 1000);
-            }, 500);
-        }
-
-        // Enhanced slideshow logic with more transitions
-        const slides = document.querySelectorAll('#slideshow .slide');
-        let currentSlide = 0;
-
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000); // Change slide every 5 seconds
-
-        // Enhanced calendar function
-        function addToCalendar(title, location, datetime) {
-            const date = new Date(datetime);
-            const year = date.getFullYear();
-            const month = (date.getMonth() + 1).toString().padStart(2, '0');
-            const day = date.getDate().toString().padStart(2, '0');
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-
-            const formattedDate = `${year}${month}${day}T${hours}${minutes}00`;
-            const endDate = `${year}${month}${day}T${(parseInt(hours) + 3).toString().padStart(2, '0')}${minutes}00`; // 3 hour duration
-
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formattedDate}/${endDate}&details=${encodeURIComponent('Muhsin & Fathima Wedding Celebration - Join us for this blessed occasion!')}&location=${encodeURIComponent(location)}`;
-
-            window.open(googleCalendarUrl, '_blank');
-        }
-
-        // Enhanced scroll reveal for elements
-        const revealElements = document.querySelectorAll('.food-item, .cultural-item, .travel-item, .qna-item');
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(50px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            revealObserver.observe(el);
-        });
-    </script>
+    <!-- Mobile-optimized JavaScript -->
+    <script src="script.js"></script>
 </body>
 
 </html>
