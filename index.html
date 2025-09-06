@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Muhsin & Fathima - Wedding Invitation</title>
-    
+
     <!-- Optimized font loading for mobile -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <!-- Confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+
     <!-- Mobile-optimized CSS -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- PWA meta tags for mobile -->
     <meta name="theme-color" content="#2C3E50">
     <meta name="mobile-web-app-capable" content="yes">
@@ -31,9 +33,10 @@
             <div class="welcome-icon">💍</div>
             <h1>Muhsin & Fathima</h1>
             <p>Assalamu Alaikum!<br>
-            We invite you to celebrate our wedding<br>
-            <strong>December 27, 2025</strong><br>
-            Kayalpattinam, Tamil Nadu</p>
+                We invite you to celebrate our wedding<br>
+                <strong>December 27, 2025</strong><br>
+                Kayalpattinam, Tamil Nadu
+            </p>
             <button class="welcome-btn" onclick="closeWelcome()">
                 <span>Join Our Celebration</span>
                 <span class="btn-icon">🎉</span>
@@ -68,31 +71,33 @@
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
-        
+
         <div class="hero-content">
             <div class="couple-photos">
                 <div class="photo-circle left-photo">
-                    <img src="https://placehold.co/100x100/A2D9CE/333333?text=M" alt="Muhsin">
+                    <!-- <img src="https://placehold.co/100x100/A2D9CE/333333?text=M" alt="Muhsin"> -->
+                    <img src="2.jpeg" alt="Muhsin">
                 </div>
                 <div class="photo-circle right-photo">
-                    <img src="https://placehold.co/100x100/2C3E50/FFFFFF?text=F" alt="Fathima">
+                    <!-- <img src="https://placehold.co/100x100/2C3E50/FFFFFF?text=F" alt="Fathima"> -->
+                    <img src="3.jpeg" alt="Muhsin">
                 </div>
             </div>
-            
+
             <div class="hero-card">
                 <div class="islamic-pattern">☪</div>
                 <h1 class="couple-names">Muhsin & Fathima</h1>
                 <p class="wedding-date">Saturday, December 27, 2025</p>
                 <p class="location">📍 Kayalpattinam, Tamil Nadu</p>
-                
+
                 <div class="divider"></div>
-                
+
                 <p class="hero-intro">
                     <em>"We're getting married, Alhamdulillah!"</em><br>
                     Join us in celebrating this blessed union.<br>
                     <span class="highlight-text">Your duas mean the world to us</span>
                 </p>
-                
+
                 <!-- Mobile-Optimized Countdown -->
                 <div class="countdown" id="countdown">
                     <div class="countdown-item">
@@ -114,7 +119,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="scroll-indicator">
             <span>Swipe up to explore</span>
             <div class="scroll-arrow">↑</div>
@@ -125,7 +130,7 @@
     <section class="section schedule-section" id="schedule">
         <div class="container">
             <h2 class="section-title">📅 Wedding Schedule</h2>
-            
+
             <div class="schedule-cards">
                 <!-- Reception Card -->
                 <div class="schedule-card reception-card">
@@ -139,12 +144,12 @@
                         <span class="location-icon">📍</span>
                         Haji Appa Thaika Street, Kayalpattinam
                     </div>
-                    <button class="add-calendar-btn" 
-                            onclick="addToCalendar('Reception & Gatherings', 'Haji Appa Thaika Street, Kayalpattinam', '2025-12-26T16:30:00')">
+                    <button class="add-calendar-btn"
+                        onclick="addToCalendar('Reception & Gatherings', 'Haji Appa Thaika Street, Kayalpattinam', '2025-12-26T16:30:00')">
                         Add to Calendar
                     </button>
                 </div>
-                
+
                 <!-- Nikkah Card -->
                 <div class="schedule-card nikkah-card featured">
                     <div class="card-header">
@@ -158,16 +163,17 @@
                         <span class="location-icon">📍</span>
                         Majlisul Bukharis Shareef, Kayalpattinam
                     </div>
-                    <button class="add-calendar-btn primary" 
-                            onclick="addToCalendar('Our Nikkah Ceremony', 'Majlisul Bukharis Shareef, Kayalpattinam', '2025-12-27T09:30:00')">
+                    <button class="add-calendar-btn primary"
+                        onclick="addToCalendar('Our Nikkah Ceremony', 'Majlisul Bukharis Shareef, Kayalpattinam', '2025-12-27T09:30:00')">
                         Add to Calendar
                     </button>
                 </div>
             </div>
-            
+
             <div class="info-card">
                 <h3>🤲 Your Prayers Requested</h3>
-                <p>With separate seating arrangements for brothers and sisters, join us in this blessed ceremony. Lunch will be served after the Nikkah.</p>
+                <p>With separate seating arrangements for brothers and sisters, join us in this blessed ceremony. Lunch
+                    will be served after the Nikkah.</p>
                 <p class="dress-code">✨ Dress Code: Elegant Cultural Attire</p>
             </div>
         </div>
@@ -177,7 +183,7 @@
     <section class="section travel-section" id="travel">
         <div class="container">
             <h2 class="section-title">🚗 Getting There</h2>
-            
+
             <div class="travel-cards">
                 <div class="travel-card">
                     <div class="travel-icon">✈️</div>
@@ -188,7 +194,7 @@
                         <span>⏱️ 45 min drive</span>
                     </div>
                 </div>
-                
+
                 <div class="travel-card">
                     <div class="travel-icon">🚆</div>
                     <h3>By Train</h3>
@@ -198,7 +204,7 @@
                         <span>⏱️ Walking distance</span>
                     </div>
                 </div>
-                
+
                 <div class="travel-card">
                     <div class="travel-icon">🚌</div>
                     <h3>By Bus</h3>
@@ -209,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="travel-tips">
                 <h3>💡 Travel Tips</h3>
                 <div class="tips-grid">
@@ -239,38 +245,39 @@
         <div class="container">
             <h2 class="section-title">🕌 Discover Kayalpattinam</h2>
             <p class="section-subtitle">"Where Faith Meets History"</p>
-            
+
             <div class="cultural-scroll">
                 <div class="cultural-card">
                     <div class="card-icon">🕌</div>
                     <h3>Al Jami'ul Kabeer</h3>
-                    <p>The Grand Masjid, over 1000 years old, built by early Arab traders. A center of prayer and learning.</p>
+                    <p>The Grand Masjid, over 1000 years old, built by early Arab traders. A center of prayer and
+                        learning.</p>
                 </div>
-                
+
                 <div class="cultural-card">
                     <div class="card-icon">📿</div>
                     <h3>Majlisul Bukhari Shareef</h3>
                     <p>Center of spiritual learning with deep reverence for Imam Al-Bukhari's teachings.</p>
                 </div>
-                
+
                 <div class="cultural-card">
                     <div class="card-icon">🏖️</div>
                     <h3>Kayalpattinam Beach</h3>
                     <p>Peaceful coastal serenity with cool breeze and gentle waves for reflection.</p>
                 </div>
-                
+
                 <div class="cultural-card">
                     <div class="card-icon">⚽</div>
                     <h3>Community Sports</h3>
                     <p>Experience vibrant beach football and cricket matches with welcoming energy.</p>
                 </div>
-                
+
                 <div class="cultural-card">
                     <div class="card-icon">📸</div>
                     <h3>Heritage Photography</h3>
                     <p>Narrow streets, heritage homes, and coastal views offering picturesque backdrops.</p>
                 </div>
-                
+
                 <div class="cultural-card">
                     <div class="card-icon">🌿</div>
                     <h3>Spiritual Ziyarath</h3>
@@ -285,45 +292,45 @@
         <div class="container">
             <h2 class="section-title">🍽️ Taste of Kayal</h2>
             <p class="section-subtitle">Don't leave without trying these local favorites!</p>
-            
+
             <div class="food-grid">
                 <div class="food-card">
                     <div class="food-emoji">🌶️</div>
                     <h3>Maasi Vaada</h3>
                     <p>Spicy traditional fritters - perfect with evening tea!</p>
                 </div>
-                
+
                 <div class="food-card">
                     <div class="food-emoji">🥥</div>
                     <h3>Cashew Macaroons</h3>
                     <p>Sweet coconut and cashew treats from Arabian trading heritage</p>
                 </div>
-                
+
                 <div class="food-card">
                     <div class="food-emoji">🍯</div>
                     <h3>Dhammadai</h3>
                     <p>Traditional sweet representing our rich culinary heritage</p>
                 </div>
-                
+
                 <div class="food-card">
                     <div class="food-emoji">🌰</div>
                     <h3>Kayal Nuts Halwa</h3>
                     <p>Rich, creamy local specialty - absolutely divine!</p>
                 </div>
-                
+
                 <div class="food-card">
                     <div class="food-emoji">🥤</div>
                     <h3>Ice Apple Shake</h3>
                     <p>Refreshing tropical beverage for warm coastal weather</p>
                 </div>
-                
+
                 <div class="food-card">
                     <div class="food-emoji">🍚</div>
                     <h3>Local Biriyani</h3>
                     <p>Aromatic blend of Arabian and South Indian flavors</p>
                 </div>
             </div>
-            
+
             <div class="restaurants-section">
                 <h3>🏪 Must-Visit Local Spots</h3>
                 <div class="restaurant-list">
@@ -352,7 +359,7 @@
     <section class="section rsvp-section" id="rsvp">
         <div class="container">
             <h2 class="section-title">💌 Please RSVP</h2>
-            
+
             <div class="rsvp-card">
                 <p class="rsvp-text">
                     We would be honored by your presence at our wedding celebration.
@@ -363,17 +370,18 @@
                 <p class="rsvp-blessing">
                     <span class="highlight-text">Your prayers are the greatest gift we could receive</span>
                 </p>
-                
-                <a href="mailto:your_email@example.com?subject=Wedding%20RSVP%20-%20Muhsin%20%26%20Fathima&body=Assalamu%20Alaikum%2C%0A%0AI%20would%20like%20to%20confirm%20my%20attendance.%0A%0AName%3A%20%0AGuests%3A%20%0AContact%3A%20%0A%0ABarakallahu%20lakuma!%0A%0AWith%20duas%2C" 
-                   class="rsvp-button">
+
+                <a href="mailto:your_email@example.com?subject=Wedding%20RSVP%20-%20Muhsin%20%26%20Fathima&body=Assalamu%20Alaikum%2C%0A%0AI%20would%20like%20to%20confirm%20my%20attendance.%0A%0AName%3A%20%0AGuests%3A%20%0AContact%3A%20%0A%0ABarakallahu%20lakuma!%0A%0AWith%20duas%2C"
+                    class="rsvp-button">
                     <span>Confirm Attendance</span>
                     <span class="btn-icon">💝</span>
                 </a>
             </div>
-            
+
             <div class="gift-note">
                 <h3>🎁 About Gifts</h3>
-                <p>Your presence and heartfelt duas are more precious than any material gifts. The joy of having you celebrate with us is the greatest blessing we could ask for.</p>
+                <p>Your presence and heartfelt duas are more precious than any material gifts. The joy of having you
+                    celebrate with us is the greatest blessing we could ask for.</p>
             </div>
         </div>
     </section>
@@ -383,7 +391,7 @@
         <div class="container">
             <h2 class="section-title">❓ Frequently Asked</h2>
             <p class="section-subtitle">Quick answers to your questions!</p>
-            
+
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
@@ -394,54 +402,59 @@
                         <p>Please RSVP by <strong>December 15th</strong> for smooth arrangements and catering.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>What should I wear?</span>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Elegant cultural dress is encouraged. Light, modest clothing is recommended for the warm coastal weather. Traditional Islamic or South Indian attire would be perfect!</p>
+                        <p>Elegant cultural dress is encouraged. Light, modest clothing is recommended for the warm
+                            coastal weather. Traditional Islamic or South Indian attire would be perfect!</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>What's the weather like in December?</span>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Pleasant coastal weather! Daytime: 28-30°C, Evening: 22-25°C with refreshing sea breeze. December is perfect for visiting!</p>
+                        <p>Pleasant coastal weather! Daytime: 28-30°C, Evening: 22-25°C with refreshing sea breeze.
+                            December is perfect for visiting!</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Will food be provided?</span>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes! Lunch will be served after the Nikkah ceremony featuring traditional Kayalpattinam cuisine and local specialties.</p>
+                        <p>Yes! Lunch will be served after the Nikkah ceremony featuring traditional Kayalpattinam
+                            cuisine and local specialties.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Can I take photos?</span>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, but please respect everyone's privacy during this religious occasion. Professional photographers will cover main events.</p>
+                        <p>Yes, but please respect everyone's privacy during this religious occasion. Professional
+                            photographers will cover main events.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Where should I park?</span>
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Free parking available near both venues. Our coordination team will guide you to designated areas.</p>
+                        <p>Free parking available near both venues. Our coordination team will guide you to designated
+                            areas.</p>
                     </div>
                 </div>
             </div>
