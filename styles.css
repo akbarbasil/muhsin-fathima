@@ -854,7 +854,7 @@ nav.visible {
     padding: var(--spacing-lg);
     border: 1px solid rgba(162, 217, 206, 0.1);
     transition: all 0.3s ease;
-    min-height: 180px;
+    min-height: 200px;
 }
 
 .cultural-card:active {
