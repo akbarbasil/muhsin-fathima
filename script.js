@@ -3,7 +3,7 @@
 // Performance optimization - Throttle function
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -34,7 +34,7 @@ function updateCountdown() {
     const distance = weddingDate - now;
 
     if (distance < 0) {
-        document.getElementById('countdown').innerHTML = 
+        document.getElementById('countdown').innerHTML =
             '<div style="text-align: center; color: var(--accent); font-family: \'Playfair Display\', serif; font-size: 1.2rem;">The Wedding Has Begun! Alhamdulillah! 🎉</div>';
         return;
     }
@@ -68,7 +68,7 @@ function initMobileNavigation() {
         e.preventDefault();
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('active');
-        
+
         // Prevent body scroll when menu is open (mobile UX improvement)
         if (navLinks.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
@@ -100,20 +100,20 @@ function initMobileNavigation() {
 // Enhanced smooth scrolling with mobile optimization
 function initSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
-    
+
     links.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 // Mobile-optimized scroll behavior
                 const isMobile = window.innerWidth < 768;
                 const offset = isMobile ? 70 : 80; // Account for mobile nav height
-                
+
                 const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -127,22 +127,22 @@ function initSmoothScrolling() {
 function initScrollNavigation() {
     let lastScrollTop = 0;
     const navbar = document.getElementById('navbar');
-    
+
     if (!navbar) return;
 
     const handleScroll = throttle(() => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         // Show navbar after scrolling down a bit
         if (scrollTop > 100) {
             navbar.classList.add('visible');
         } else {
             navbar.classList.remove('visible');
         }
-        
+
         lastScrollTop = scrollTop;
     }, 100); // Throttle to improve performance on mobile
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
 }
 
@@ -158,7 +158,7 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
+
                 // Add staggered animation for child elements
                 const children = entry.target.querySelectorAll('.schedule-card, .travel-card, .cultural-card, .food-card, .faq-item');
                 children.forEach((child, index) => {
@@ -167,7 +167,7 @@ function initScrollAnimations() {
                         child.style.transform = 'translateY(0)';
                     }, index * 100);
                 });
-                
+
                 // Unobserve after animation to improve performance
                 observer.unobserve(entry.target);
             }
@@ -193,13 +193,13 @@ function initScrollAnimations() {
 function launchMobileConfetti() {
     // Check if confetti is available
     if (typeof confetti === 'undefined') return;
-    
+
     const colors = ['#A2D9CE', '#2C3E50', '#DAA520', '#FFFFFF', '#F3F3F3'];
     const isMobile = window.innerWidth < 768;
-    
+
     // Reduce particle count on mobile for better performance
     const particleCount = isMobile ? 75 : 150;
-    
+
     confetti({
         particleCount: particleCount,
         spread: 70,
@@ -223,14 +223,14 @@ function launchMobileConfetti() {
 function closeWelcome() {
     const modal = document.getElementById('welcomeModal');
     if (!modal) return;
-    
+
     modal.style.opacity = '0';
     modal.style.transform = 'scale(0.95)';
-    
+
     setTimeout(() => {
         modal.style.display = 'none';
         launchMobileConfetti();
-        
+
         // Additional confetti after delay for celebration
         setTimeout(launchMobileConfetti, 1000);
     }, 500);
@@ -263,7 +263,7 @@ function addToCalendar(title, location, datetime) {
 function toggleFaq(questionElement) {
     const faqItem = questionElement.parentElement;
     const isActive = faqItem.classList.contains('active');
-    
+
     // Close all other FAQ items for mobile (accordion behavior)
     const allFaqItems = document.querySelectorAll('.faq-item');
     allFaqItems.forEach(item => {
@@ -271,10 +271,10 @@ function toggleFaq(questionElement) {
             item.classList.remove('active');
         }
     });
-    
+
     // Toggle current item
     faqItem.classList.toggle('active');
-    
+
     // Scroll to the opened FAQ item on mobile for better UX
     if (!isActive && window.innerWidth < 768) {
         setTimeout(() => {
@@ -300,19 +300,19 @@ function initTouchEnhancements() {
 
     // Add touch feedback to interactive elements
     const interactiveElements = document.querySelectorAll('.schedule-card, .travel-card, .cultural-card, .food-card, button, .nav-links a');
-    
+
     interactiveElements.forEach(element => {
-        element.addEventListener('touchstart', function() {
+        element.addEventListener('touchstart', function () {
             this.style.opacity = '0.7';
         }, { passive: true });
-        
-        element.addEventListener('touchend', function() {
+
+        element.addEventListener('touchend', function () {
             setTimeout(() => {
                 this.style.opacity = '';
             }, 150);
         }, { passive: true });
-        
-        element.addEventListener('touchcancel', function() {
+
+        element.addEventListener('touchcancel', function () {
             this.style.opacity = '';
         }, { passive: true });
     });
@@ -362,19 +362,19 @@ function initMobileWeddingInvitation() {
     initScrollAnimations();
     initTouchEnhancements();
     initPerformanceOptimizations();
-    
+
     // Update countdown every second
     setInterval(updateCountdown, 1000);
-    
+
     // Handle orientation changes on mobile
     const handleOrientationChange = debounce(() => {
         // Recalculate heights and positions after orientation change
         window.scrollTo(0, window.scrollY);
     }, 100);
-    
+
     window.addEventListener('orientationchange', handleOrientationChange);
     window.addEventListener('resize', handleOrientationChange);
-    
+
     // Handle visibility change for battery optimization
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
@@ -390,23 +390,23 @@ function initMobileWeddingInvitation() {
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initMobileWeddingInvitation();
-    
+
     // Add initial animations
     setTimeout(() => {
         const heroCard = document.querySelector('.hero-card');
         const countdown = document.querySelector('.countdown');
-        
+
         if (heroCard) {
             heroCard.style.opacity = '1';
             heroCard.style.transform = 'translateY(0) scale(1)';
         }
-        
+
         if (countdown) {
             countdown.style.opacity = '1';
             countdown.style.transform = 'scale(1)';
         }
     }, 300);
-    
+
     // Launch confetti after a delay for celebration
     setTimeout(launchMobileConfetti, 800);
 });
@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     // Hide loading indicators, start final animations
     document.body.classList.add('loaded');
-    
+
     // Additional confetti celebration
     setTimeout(launchMobileConfetti, 500);
 });
